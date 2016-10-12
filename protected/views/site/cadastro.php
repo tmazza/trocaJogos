@@ -33,7 +33,9 @@ $form=$this->beginWidget('CActiveForm', array(
     </div>
     <br>
     <div class="uk-text-right">
-      <?php echo CHtml::submitButton('Criar', []); ?>
+      <?php echo CHtml::submitButton('Criar', [
+        'class'=>'waves-effect waves-light btn',
+      ]); ?>
     </div>
 </fieldset>
 <?php $this->endWidget(); ?>

@@ -26,7 +26,9 @@
         <?php echo $form->error($model, 'password'); ?>
         <br>
         <br>
-        <?php echo CHtml::submitButton('Entrar', []); ?>
+        <?php echo CHtml::submitButton('Entrar', [
+          'class'=>'waves-effect waves-light btn',
+        ]); ?>
         <?php $this->endWidget(); ?>
       </div>
     </div>

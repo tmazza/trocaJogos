@@ -4,7 +4,7 @@ require(dirname(__FILE__) . '/__config.php');
 
 return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
-    'name' => "trocaJogos",
+    'name' => "SwapMeet",
     'defaultController' => 'site',
     'preload' => array('log'),
     'import' => array(
