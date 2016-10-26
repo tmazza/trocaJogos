@@ -5,7 +5,7 @@
 
 
 	    <!--Import Google Icon Font-->
-    	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       	<!--Import materialize.css-->
       	<link type="text/css" rel="stylesheet" href="<?=Yii::app()->baseUrl?>/materialize/css/materialize.min.css"  media="screen,projection"/>
 	    <meta charset="utf-8" />
