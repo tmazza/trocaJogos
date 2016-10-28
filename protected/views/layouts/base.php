@@ -23,28 +23,26 @@
 
 	<body>
 	  <nav>
-	    <div class="nav-wrapper  blue darken-3">
-	      <a href="<?=$this->createUrl('/site/index')?>" class="brand-logo">SwapMeet</a>
-	      <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
-	      <a href="#" data-activates="slide-out2" class="button-collapse2 right">
+	    <div class="nav-wrapper blue darken-3">
+	      <a href="#" data-activates="slide-out" class="button-collapse" style="margin:0px 8px;display:block!important">
+	      	<i class="material-icons">menu</i>
+	      </a>
+	      <a href="<?=$this->createUrl('/site/index')?>" class="brand-logo" >
+	      	ExpChange
+	      </a>
+	      <a href="#" data-activates="slide-out2" class="button-collapse2 right" style="margin:0px 8px;">
 	      	<i class="material-icons">search</i>
 	      </a>
-	      <ul class="right hide-on-med-and-down">
-	        <li><a href="sass.html">Sass</a></li>
-	        <li><a href="badges.html">Components</a></li>
-	        <li><a href="collapsible.html">Javascript</a></li>
-	        <li><a href="mobile.html">Mobile</a></li>
-	      </ul>
 
 		    <div id="slide-out2" class="side-nav">
 		      	<div class="row">
-				    <form class="col s12">
-				        <div class="input-field">
-				          <i class="material-icons prefix black-text">search</i>
-				          <input id="icon_prefix" placeholder="Buscar por pessoas" type="text" class="black-text">
-				        </div>
-				    </form>
-			  	</div>		
+					    <form class="col s12">
+					        <div class="input-field">
+					          <i class="material-icons prefix black-text">search</i>
+					          <input id="icon_prefix" placeholder="Buscar por pessoas" type="text" class="black-text">
+					        </div>
+					    </form>
+			  		</div>		
 		  		<div class="row black-text" style="line-height:20px!important;">
 				    <div class="col s12">
 			  			<h6>Melhores resultados</h6>
