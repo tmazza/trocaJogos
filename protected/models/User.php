@@ -124,4 +124,24 @@ class User extends CActiveRecord
 		$this->update('avaliacaoMedia');
 	}
 
+	public function getPic()
+	{
+		$pics = [
+		  'http://www.noviasalcedo.es/wp-content/uploads/2016/05/person-girl-flat.png',
+		  'https://mir-s3-cdn-cf.behance.net/project_modules/disp/396f2d24539351.56335ec733642.png',
+		  'https://mir-s3-cdn-cf.behance.net/project_modules/disp/ce54bf11889067.562541ef7cde4.png',
+		  'http://www.iconsfind.com/wp-content/uploads/2015/08/20150831_55e46ad551392.png',
+		  'http://www.iconsfind.com/wp-content/uploads/2015/10/20151012_561bae5f0713e.png',
+		  'http://openplus.ca/images/photo.jpg',
+		  'http://www.fdspt.rnu.tn/sites/default/files/teacher/flat-user_24.png',
+		  'https://0.s3.envato.com/files/97977535/512/8_resize.png',
+		  'https://cdn0.iconfinder.com/data/icons/avatars-3/512/avatar_hiphop_guy-512.png',
+		  'http://previews.123rf.com/images/provector/provector1501/provector150100144/35282212-Flat-Busness-Man-User-Profile-Avatar-in-Suit-icon-design-and-long-shadow-vector-illustration-for-web-Stock-Vector.jpg',
+		  'http://media.istockphoto.com/vectors/businessman-profile-icon-male-portrait-flat-vector-id530838837?s=235x235',
+		  'http://previews.123rf.com/images/gmast3r/gmast3r1503/gmast3r150300010/37887487-businessman-profile-icon-male-portrait-flat-Stock-Vector.jpg',
+		  'http://i.istockimg.com/file_thumbview_approve/63789905/5/stock-illustration-63789905-businessman-asian-race-profile-icon-hispanic-male-portrait.jpg',
+		];
+		return $pics[$this->id % count($pics)];
+	}
+
 }

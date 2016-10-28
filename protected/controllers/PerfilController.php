@@ -5,8 +5,10 @@ class PerfilController extends MainController {
     return parent::beforeAction($action);
   }
 
-  public function actionIndex(){
-    $this->render('index');
+  public function actionIndex($id){
+    $this->render('index',[
+      'user' => User::model()->findByPk((int)$id),
+    ]);
   }
 
 }
