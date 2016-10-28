@@ -34,57 +34,9 @@
 	      	<i class="material-icons">search</i>
 	      </a>
 
-		    <div id="slide-out2" class="side-nav">
-		      	<div class="row">
-					    <form class="col s12">
-					        <div class="input-field">
-					          <i class="material-icons prefix black-text">search</i>
-					          <input id="icon_prefix" placeholder="Buscar por pessoas" type="text" class="black-text">
-					        </div>
-					    </form>
-			  		</div>		
-		  		<div class="row black-text" style="line-height:20px!important;">
-				    <div class="col s12">
-			  			<h6>Melhores resultados</h6>
-			  			<br>
-					  	<div class="row">
-					  		<div class="col s6" style="text-align:center;">
-								   <img src="<?=Yii::app()->baseUrl;?>/images/female.jpeg" style='width:60px;' class="circle"/>
-								   <div style="font-size:20px:">
-									   	<i style="line-height:16px;display:inline-block;font-size:14px;" class="material-icons amber-text">star</i>
-									   	<i style="line-height:16px;display:inline-block;font-size:14px;" class="material-icons amber-text">star</i>
-									   	<i style="line-height:16px;display:inline-block;font-size:14px;" class="material-icons amber-text">star</i>
-									   	<i style="line-height:16px;display:inline-block;font-size:14px;" class="material-icons amber-text">star</i>
-									   	<i style="line-height:16px;display:inline-block;font-size:14px;" class="material-icons amber-text">star</i>
-								   </div>
-					  		</div>
-					  		<div class="col s6" style="font-size:21px;text-align:center;">
-					  			Jane Doe
-					  			<br><br>
-					  			<span class="green-text">+160</span>
-					  		</div>
-					  	</div>
-			  			<br>
-					  	<div class="row">
-					  		<div class="col s6" style="text-align:center;">
-								   <img src="<?=Yii::app()->baseUrl;?>/images/male.png" style='width:60px;' class="circle"/>
-								   <div style="font-size:20px:">
-									   	<i style="line-height:16px;display:inline-block;font-size:14px;" class="material-icons amber-text">star</i>
-									   	<i style="line-height:16px;display:inline-block;font-size:14px;" class="material-icons amber-text">star</i>
-									   	<i style="line-height:16px;display:inline-block;font-size:14px;" class="material-icons amber-text">star</i>
-									   	<i style="line-height:16px;display:inline-block;font-size:14px;" class="material-icons amber-text">star</i>
-									   	<i style="line-height:16px;display:inline-block;font-size:14px;" class="material-icons amber-text">star</i>
-								   </div>
-					  		</div>
-					  		<div class="col s6" style="font-size:21px;text-align:center;">
-					  			Jonny Doe
-					  			<br><br>
-					  			<span class="green-text">+120</span>
-					  		</div>
-					  	</div>
-			  		</div>
-			  	</div>
-		    </div>
+		    <ul id="slide-out2" class="side-nav">
+		    	<?php $this->renderPartial('/site/search'); ?>
+		    </ul>
 		  <ul id="slide-out" class="side-nav">
 		  	<?php if(Yii::app()->user->isGuest): ?>
 			    <li><a href="<?=$this->createUrl('/site/logout')?>" class="waves-effect">Entrar</a></li>
