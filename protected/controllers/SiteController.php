@@ -9,7 +9,9 @@ class SiteController extends MainController {
     if(Yii::app()->user->isGuest){
       $this->redirect($this->createUrl('/site/login'));
     } else {
-      $this->render('index',[]);
+      $this->render('index',[
+        'trocas' => Troca::model()->minhasTrocasAtivas()->findAll(['order'=>'id DESC']),
+      ]);
     }
   }
 

@@ -55,8 +55,10 @@ class Troca extends CActiveRecord
 	{
 		return array(
 			'mensagems' => array(self::HAS_MANY, 'Mensagem', 'troca_id'),
-			'usuarioQueDecide' => array(self::BELONGS_TO, 'Usuario', 'usuarioQueDecide_id'),
-			'usuarioSolicitante' => array(self::BELONGS_TO, 'Usuario', 'usuarioSolicitante_id'),
+			'usuarioQueDecide' => array(self::BELONGS_TO, 'User', 'usuarioQueDecide_id'),
+			'usuarioSolicitante' => array(self::BELONGS_TO, 'User', 'usuarioSolicitante_id'),
+			'itensSolicitados' => [self::HAS_MANY,'TrocaItemSolicitado','troca_id'],
+			'itensOferecidos' => [self::HAS_MANY,'TrocaItemOferecido','troca_id'],
 		);
 	}
 
@@ -89,4 +91,53 @@ class Troca extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	public function scopes()
+	{
+		$id = Yii::app()->user->id;
+		return [
+			'minhasTrocasAtivas' => [
+				'condition' => "(usuarioSolicitante_id = $id OR usuarioQueDecide_id = $id) " 
+						. "AND status = " . self::StatusAtiva,
+			],
+		];
+	}
+
+	public function isSolicitante()
+	{
+		return $this->usuarioSolicitante_id == Yii::app()->user->id;
+	}
+
+	public function getValor()
+	{
+		return $this->isSolicitante() ? $this->valorParaUsuarioSolicitante : $this->valorParaUsuarioQueDecide;
+	}
+
+	public function getStringRecebe()
+	{
+		$recebe = $this->isSolicitante() ? $this->itensSolicitados : $this->itensOferecidos;
+		return implode(' <b>+</b> ',$this->getStringListaItens($recebe));
+	}
+	public function getStringOferece()
+	{
+		$oferece = $this->isSolicitante() ? $this->itensOferecidos : $this->itensSolicitados;
+		return implode(' <b>+</b> ',$this->getStringListaItens($oferece));
+	}
+
+	public function getStringListaItens($lista)
+	{
+		return array_map(function($i){
+				$id = $i->itemParaTroca;
+				return ($id->item->tipo == 0 ? 'Console' : 'Jogo' ) . ' '
+				  . $id->item->nome 
+					. (strlen($id->nome)>1 ? ' - ' . $id->nome : '')
+					. ' - ' . ($id->isNovo ? 'Novo' : 'Usado');
+			}, $lista);
+	}
+
+	public function getAvaliacao()
+	{
+		return $this->isSolicitante() ? $this->usuarioQueDecide->getAvaliacao() : $this->usuarioSolicitante->getAvaliacao();
+	}
+
 }

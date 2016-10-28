@@ -35,6 +35,8 @@ class TrocaItemSolicitado extends CActiveRecord
 	public function relations()
 	{
 		return array(
+			'troca' => [self::BELONGS_TO,'Troca','troca_id'],
+			'itemParaTroca' => [self::BELONGS_TO,'ItemParaTroca','itemParaTroca_id'],
 		);
 	}
 

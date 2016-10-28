@@ -148,4 +148,13 @@ class User extends CActiveRecord
 		return $pics[$this->id % count($pics)];
 	}
 
+	public function getAvaliacao()
+	{
+		if($this->qtdTrocaRealizadas > 0){
+			return ceil($this->avaliacaoMedia / $this->qtdTrocaRealizadas);
+		} else {
+			return 0;
+		}
+	}
+
 }

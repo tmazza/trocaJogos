@@ -9,7 +9,7 @@
       <br>
       Média das avaliações<br> 
       <?php for($i=0;$i<5;$i++): ?>
-        <?php if($i+1 > ceil($user->avaliacaoMedia / $user->qtdTrocaRealizadas)): ?>
+        <?php if($i+1 > $user->getAvaliacao()): ?>
           <i class="material-icons grey-text">star</i>
         <?php else: ?>
           <i class="material-icons amber-text">star</i>
