@@ -74,4 +74,10 @@ class ItemParaTroca extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	public function getPontos()
+	{
+		return $this->isNovo ? $this->item->pontuacaoNovo : $this->item->pontuacaoUsado;
+	}
+	
 }

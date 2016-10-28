@@ -46,8 +46,12 @@ class User extends CActiveRecord
 	public function relations()
 	{
 		return array(
-			'itensDesejados' => [self::HAS_MANY,'ItemDesejado','usuario_id','order' => 'id DESC'],
-			'itensParaTroca' => [self::HAS_MANY,'ItemParaTroca','usuario_id','order' => 'id DESC'],
+			'itensDesejados' => [self::HAS_MANY,'ItemDesejado','usuario_id',
+				'order' => 'id DESC',
+			],
+			'itensParaTroca' => [self::HAS_MANY,'ItemParaTroca','usuario_id',
+				'order' => 'id DESC',
+			],
 		);
 	}
 
@@ -118,10 +122,10 @@ class User extends CActiveRecord
 
 	public function descontaUm()
 	{
-		$this->avaliacaoMedia = $this->avaliacaoMedia - 1;
-		if($this->avaliacaoMedia < 1)
-			$this->avaliacaoMedia = 1;
-		$this->update('avaliacaoMedia');
+		$this->somaAvaliacoes = $this->somaAvaliacoes - 1;
+		if($this->somaAvaliacoes < 1)
+			$this->somaAvaliacoes = 1;
+		$this->update('somaAvaliacoes');
 	}
 
 	public function getPic()

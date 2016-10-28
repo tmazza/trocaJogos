@@ -82,4 +82,9 @@ class ItemDesejado extends CActiveRecord
 		];
 	}
 
+	public function getPontos()
+	{
+		return $this->isNovo ? $this->item->pontuacaoNovo : $this->item->pontuacaoUsado;
+	}
+
 }

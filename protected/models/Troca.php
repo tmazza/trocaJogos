@@ -22,6 +22,11 @@
  */
 class Troca extends CActiveRecord
 {
+
+	const StatusAtiva = 1;
+	const StatusArquivada = 0;
+
+
 	/**
 	 * @return string the associated database table name
 	 */
