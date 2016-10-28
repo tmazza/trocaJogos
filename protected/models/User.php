@@ -46,6 +46,8 @@ class User extends CActiveRecord
 	public function relations()
 	{
 		return array(
+			'itensDesejados' => [self::HAS_MANY,'ItemDesejado','usuario_id','order' => 'id DESC'],
+			'itensParaTroca' => [self::HAS_MANY,'ItemParaTroca','usuario_id','order' => 'id DESC'],
 		);
 	}
 
@@ -97,8 +99,6 @@ class User extends CActiveRecord
 		$model->nome = $nome;
 		$model->senha = CPasswordHelper::hashPassword($senha);
 		$model->email = $email;
-		$model->social = $social;
-		$model->social_id = $socialId;
 		$model->tipo = 1;
 		if($model->save()){
 			return $model;
@@ -114,6 +114,14 @@ class User extends CActiveRecord
 
 	public function scopes(){
 		return array();
+	}
+
+	public function descontaUm()
+	{
+		$this->avaliacaoMedia = $this->avaliacaoMedia - 1;
+		if($this->avaliacaoMedia < 1)
+			$this->avaliacaoMedia = 1;
+		$this->update('avaliacaoMedia');
 	}
 
 }

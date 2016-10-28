@@ -16,6 +16,9 @@
  */
 class ItemParaTroca extends CActiveRecord
 {
+
+	const LimiteGratuito = 20;
+
 	/**
 	 * @return string the associated database table name
 	 */

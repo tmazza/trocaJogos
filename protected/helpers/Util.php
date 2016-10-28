@@ -4,11 +4,11 @@ class Util {
   public static function flashMessages(){
     $u = Yii::app()->user;
     $base = function($classe,$msg) use ($u){
-      return  '<h1>' . $u->getFlash($msg) . '<h1>';
+      return  '<div class="card-panel ' . $classe . '">' . $u->getFlash($msg) . '</div>';
     };
-    if($u->hasFlash(MainController::fsuc)){ echo $base('',MainController::fsuc); }
-    if($u->hasFlash(MainController::ferr)){ echo $base('',MainController::ferr); }
-    if($u->hasFlash(MainController::finf)){ echo $base('',MainController::finf); }
+    if($u->hasFlash(MainController::fsuc)){ echo $base('light-green darken-1 white-text',MainController::fsuc); }
+    if($u->hasFlash(MainController::ferr)){ echo $base('red darken-1 white-text',MainController::ferr); }
+    if($u->hasFlash(MainController::finf)){ echo $base('blue darken-1 white-text',MainController::finf); }
   }
 
   public static function fsuc($msg){

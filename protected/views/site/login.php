@@ -1,9 +1,6 @@
-<div class="uk-grid">
+<div class="card-panel">
   <div class="uk-width-medium-1-2 uk-width-small-1-1">
     <div class="uk-align-center">
-      <br><br>
-      <br><br>
-      <?= CHtml::link('Criar uma conta', $this->createUrl('/site/cadastro'),array('class'=>'uk-button uk-button-link','style'=>'width:100%')); ?>
       <div >
         <?php
         $form = $this->beginWidget('CActiveForm', array(
@@ -30,6 +27,9 @@
           'class'=>'waves-effect waves-light btn',
         ]); ?>
         <?php $this->endWidget(); ?>
+        <br>
+        Não tem uma conta?
+        <?= CHtml::link('Criar uma conta', $this->createUrl('/site/cadastro'),array('class'=>'uk-button uk-button-link','style'=>'width:100%')); ?>
       </div>
     </div>
   </div>

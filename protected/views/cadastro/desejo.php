@@ -6,26 +6,32 @@
 <h5>
 	Lista de itens desejados
 </h5>
-<?php foreach ($itens as $id): ?> 
-	<br>
-	<div class="col s12 m8 offset-m2 l6 offset-l3">
-		<div class="card-panel grey lighten-5 z-depth-1">
-		  <div class="row valign-wrapper">
-		    <div class="col m2 s12">
-		      <img src="<?= $id->item->urlFoto?>" alt="" class="responsive-img">
-		    </div>
-		    <div class="col m10 s12 flow-text">
-		      <span class="black-text">
-		        <?= $id->item->nome ?> <?=strlen($id->nome)>1 ? ' - ' . $id->nome : '';?>
-		      </span>
-		    </div>
-		  </div>
-		  <a href="#!" class="right btn grey" onclick="return confirm('Certeza?');">Remover</a>
+<?php if(count($itens)>0):?>
+	<?php foreach ($itens as $id): ?> 
+		<br>
+		<div class="col s12 m8 offset-m2 l6 offset-l3">
+			<div class="card-panel grey lighten-5 z-depth-1">
+			  <div class="row valign-wrapper">
+			    <div class="col m2 s12">
+			      <img src="<?= $id->item->urlFoto?>" alt="" class="responsive-img">
+			    </div>
+			    <div class="col m10 s12 flow-text">
+			      <span class="black-text">
+			        <?= $id->item->nome ?> <?=strlen($id->nome)>1 ? ' - ' . $id->nome : '';?>
+			        - <?= $id->isNovo ? 'Novo' : 'Usado'; ?>
+			      </span>
+			    </div>
+			  </div>
+			  <a href="#!" class="right btn grey" onclick="return confirm('Certeza?');">Remover</a>
+			</div>
 		</div>
-	</div>
-	
-<?php endforeach; ?>
-
+		
+	<?php endforeach; ?>
+<?php else: ?>
+	<p class="flow-text">
+		Nenhum item na lista de desejos.
+	</p>
+<?php endif; ?>
 
 
 

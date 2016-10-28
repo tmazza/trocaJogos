@@ -16,6 +16,9 @@ class MainController extends CController  {
 
     protected function beforeAction($action) {
         $this->addScripts();
+        if(!Yii::app()->user->isGuest){
+            $this->user = User::model()->findByPk(Yii::app()->user->id);
+        }
         return parent::beforeAction($action);
     }
 
