@@ -93,9 +93,11 @@
 			    	<div class="userView">
 				      <img class="background" src="images/office.jpg">
 				      <a href="<?=$this->createUrl('/site/index')?>"><img class="circle" src="images/yuna.jpg"></a>
-				      <a href="<?=$this->createUrl('/site/index')?>"><span class="white-text name">John Doe</span></a>
-				      <a href="mailto:JohnDoe@email.com">
-				      <span class="white-text email">JohnDoe@email.com</span></a>
+				      <a href="<?=$this->createUrl('/site/index')?>"><span class="white-text name">
+				     	<?=$this->user->nome?>
+				      </span></a>
+				      <a href="mailto:<?=$this->user->email?>">
+				      <span class="white-text email"><?=$this->user->email?></span></a>
 			    	</div>
 			    </li>
 			    <li><a href="<?=$this->createUrl('/cadastro/desejo');?>" class="waves-effect">Itens desejados</a></li>
