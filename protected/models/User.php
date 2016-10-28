@@ -12,6 +12,9 @@
 class User extends CActiveRecord
 {
 
+	const TipoGratuito = 0;
+	const TipoAssinante = 1;
+
 	public $senha2;
 
 	/**
@@ -19,7 +22,7 @@ class User extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'user';
+		return 'usuario';
 	}
 
 	/**
@@ -31,9 +34,9 @@ class User extends CActiveRecord
 			array('nome, email', 'required'),
 			array('nome', 'length', 'max'=>128),
 			array('email', 'length', 'max'=>400),
-			array('senha', 'compare','compareAttribute'=>'senha2','on'=>'register', 'message' => 'A senha deve ser exatamente repetida.'),
-	        array('emailFechaDia,emailAvisoFechaDia,faceAvisoFechaDia', 'boolean'),
-			array('id, nome, email, senha,social,social_id', 'safe', 'on'=>'search'),
+			array('senha', 'compare','compareAttribute'=>'senha2','on'=>'register', 
+				'message' => 'A senha deve ser repetida.'),
+			array('id, nome, email, senha', 'safe', 'on'=>'search'),
 		);
 	}
 
