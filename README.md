@@ -1,4 +1,4 @@
-## SwapMeet
+## ExpChange
 
 ### Tela principal, após acesso ao sistema
 
