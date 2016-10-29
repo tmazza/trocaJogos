@@ -5,6 +5,28 @@ class TrocaController extends MainController {
     return parent::beforeAction($action);
   }
 
+  public function actionAvaliar($id){
+    $troca = Troca::model()->findByPk((int) $id);
+    $user = $troca->isSolicitante() ? $troca->usuarioQueDecide : $troca->usuarioSolicitante;
+
+    if(isset($_POST['msg'])){
+      $model = new Mensagem();
+      $model->corpo = $_POST['msg'];
+      $model->remetente_id = Yii::app()->user->id;
+      $model->troca_id = $troca->id;
+      if($model->save()){
+        Util::fsuc('Mensagem enviada.');
+      } elseif(strlen($model->corpo) < 1) {
+        Util::ferr('Escreva algo.');
+      }
+    }
+
+    $this->render('avaliar',[
+      'troca' => $troca,
+      'user' => $user,
+    ]);
+  }
+
   public function actionPropor($id){
     $user = User::model()->findByPk((int)$id);
 
@@ -59,10 +81,6 @@ class TrocaController extends MainController {
       'itensQuero' => $itensQuero,
       'itensTenho' => $itensTenho,
     ]);
-  }
-
-  public function actionAvaliar(){
-    $this->render('avaliar');
   }
 
 

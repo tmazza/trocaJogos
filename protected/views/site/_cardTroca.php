@@ -1,6 +1,8 @@
 <div class="row">
   <div class="col s12">
-  	<a href='<?=$this->createUrl('/troca/avaliar');?>'>
+  	<a href='<?=$this->createUrl('/troca/avaliar',[
+  		'id' => $troca->id,
+  	]);?>'>
 	    <div class="card-panel waves-effect" style="width:100%">
 	    	<div class="flow-text" style="float:left; width:350px;color:#000;">
 				<small style="color:#777">Você reberá:</small><br> <?=$itensVem?>

@@ -21,13 +21,13 @@
 	    <!-- estilos -->
 	</head>
 
-	<body>
+	<body style="padding-bottom: 80px;">
 	  <nav>
 	    <div class="nav-wrapper blue darken-3">
 	      <a href="#" data-activates="slide-out" class="button-collapse" style="margin:0px 8px;display:block!important">
 	      	<i class="material-icons">menu</i>
 	      </a>
-	      <a href="<?=$this->createUrl('/site/index')?>" class="brand-logo" >
+	      <a href="<?=$this->createUrl('/site/index')?>" class="brand-logo" style='font-family: arial;font-size: 26px; font-weight: bold;' >
 	      	ExpChange
 	      </a>
 	      <a href="#" data-activates="slide-out2" class="button-collapse2 right" style="margin:0px 8px;">
