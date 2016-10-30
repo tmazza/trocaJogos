@@ -151,8 +151,8 @@
     </div>
     <div id="test3" class="col s12">
       <br>      
-      <?php if(count($user->itensParaTroca) > 0): ?>
-        <?php foreach ($user->itensParaTroca as $id): ?>
+      <?php if(count($user->itensDesejados) > 0): ?>
+        <?php foreach ($user->itensDesejados as $id): ?>
           <div class="col s12 m6">
             <div class="card-panel grey lighten-5 z-depth-1">
               <div class="row valign-wrapper">
