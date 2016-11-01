@@ -30,9 +30,11 @@
 	      <a href="<?=$this->createUrl('/site/index')?>" class="brand-logo" style='font-family: arial;font-size: 26px; font-weight: bold;' >
 	      	ExpChange
 	      </a>
-	      <a href="#" data-activates="slide-out2" class="button-collapse2 right" style="margin:0px 8px;">
-	      	<i class="material-icons">search</i>
-	      </a>
+	      <?php if(!Yii::app()->user->isGuest): ?>
+		      <a href="#" data-activates="slide-out2" class="button-collapse2 right" style="margin:0px 8px;">
+		      	<i class="material-icons">search</i>
+		      </a>
+	      <?php endif; ?>
 
 		    <ul id="slide-out2" class="side-nav">
 		    	<?php $this->renderPartial('/site/search'); ?>
