@@ -8,7 +8,7 @@ class TrocaController extends MainController {
   public function actionAvaliar($id){
     $troca = Troca::model()->findByPk((int) $id);
 
-    if($troca->status = Troca::StatusParaAvaliar){
+    if($troca->status == Troca::StatusParaAvaliar){
       $this->redirect($this->createUrl('/troca/qualificar',[
         'id' => $troca->id,
       ]));
@@ -37,6 +37,37 @@ class TrocaController extends MainController {
   public function actionQualificar($id)
   {
     $troca = Troca::model()->findByPk((int) $id);
+
+
+    if(isset($_POST['rating'])){
+      $rating = (int) $_POST['rating'];
+      $comentario = isset($_POST['comentario']) ? $_POST['comentario'] : null;
+
+      if($troca->isSolicitante()){
+        # salva avaliação
+        $troca->avaliacaoSolicitante = (int) $rating;
+        $troca->msgAvaliacaoSolicitante = $comentario;
+        $troca->update(['avaliacaoSolicitante','msgAvaliacaoSolicitante']);
+        # atualiza o perfil do outro usuário
+        $troca->usuarioQueDecide->somaAvaliacoes += $rating;
+        $troca->usuarioQueDecide->update(['somaAvaliacoes']);
+      } else {
+        # salva avaliação
+        $troca->avaliacaoQueDecide = (int) $rating;
+        $troca->msgAvaliacaoQueDecide = $comentario;
+        $troca->update(['avaliacaoQueDecide','msgAvaliacaoQueDecide']);
+        # atualiza o perfil do outro usuário
+        $troca->usuarioSolicitante->somaAvaliacoes += $rating;
+        $troca->usuarioSolicitante->update(['somaAvaliacoes']);
+      }
+      if($troca->isAvaliadaPelosDois()){
+        $troca->arquivar();
+      }
+      Util::fsuc('Troca avaliada.');
+      $this->redirect($this->createUrl('/site/index'));
+
+    }
+
     $this->render('qualificar',[
       'troca' => $troca,
     ]);

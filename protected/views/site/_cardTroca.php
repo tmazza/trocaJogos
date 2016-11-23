@@ -1,5 +1,8 @@
 <div class="row">
   <div class="col s12">
+    <?php if($troca->status == Troca::StatusParaAvaliar): ?>
+      <span style="color: red;">Troca aguardando sua avaliação.</span>
+    <?php endif; ?>
   	<a href='<?=$this->createUrl('/troca/avaliar',[
   		'id' => $troca->id,
   	]);?>'>

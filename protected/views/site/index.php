@@ -1,6 +1,7 @@
 <h5>Trocas em avaliação</h5>
 <?php if(count($trocas) > 0): ?>
   <?php foreach ($trocas as $t): ?>
+    <?php if($t->euNaoAvaliei()): ?>
     <?php $this->renderPartial('/site/_cardTroca',[
       'troca' => $t,
       'valor' => abs($t->getValor()),
@@ -9,6 +10,7 @@
       'itensVai' => $t->getStringOferece(),
       'stars' => $t->getAvaliacao(),
     ]); ?>
+    <?php endif; ?>
   <?php endforeach; ?>
 <?php else: ?>
   <div class="card-panel">

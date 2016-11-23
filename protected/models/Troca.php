@@ -99,7 +99,7 @@ class Troca extends CActiveRecord
 		return [
 			'minhasTrocasAtivas' => [
 				'condition' => "(usuarioSolicitante_id = $id OR usuarioQueDecide_id = $id) " 
-						. "AND status = " . self::StatusAtiva,
+						. "AND status in  (" . self::StatusAtiva . "," . self::StatusParaAvaliar . ")",
 			],
 		];
 	}
@@ -166,6 +166,17 @@ class Troca extends CActiveRecord
 		# atualizar status da troca
 		$this->status = self::StatusParaAvaliar;
 		$this->update(['status']);	
+	}
+
+	public function euNaoAvaliei()
+	{
+		return ($this->isSolicitante() && is_null($this->avaliacaoSolicitante))
+				|| (!$this->isSolicitante() && is_null($this->avaliacaoQueDecide));
+	}
+
+	public function isAvaliadaPelosDois()
+	{
+		return !(is_null($this->avaliacaoSolicitante) || is_null($this->avaliacaoQueDecide));
 	}
 
 }
