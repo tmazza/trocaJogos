@@ -84,6 +84,14 @@ class TrocaController extends MainController {
   }
 
 
+  public function actionCancelar($id)
+  {
+    $troca = Troca::model()->findByPk((int) $id);
+    $troca->arquivar();
+    Util::fsuc('Proposta de troca cancelada.');
+    $this->redirect($this->createUrl('/site/index'));
+  }
+
   private function getItensTenho($user)
   {
     $meusParaTroca = array_map(function($i){

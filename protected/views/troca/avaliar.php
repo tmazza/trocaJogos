@@ -81,7 +81,9 @@
    
 <br><br><br>
 <?php if($troca->isSolicitante()): ?>
-	<a class="waves-effect waves-light btn right grey">Cancelar proposta</a> 
+	<a class="waves-effect waves-light btn right grey" onclick="return confirm('Confirma cancelamento?')" href='<?=$this->createUrl('/troca/cancelar',['id'=>$troca->id]);?>'>
+		Cancelar proposta
+	</a> 
 <?php else: ?>
 	<a class="waves-effect waves-light btn right grey">Recusar</a> 
 	<a style='margin-right: 4px;' class="waves-effect waves-light btn blue darken-3 right">Marcar como realizada</a> 

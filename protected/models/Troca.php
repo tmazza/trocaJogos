@@ -140,4 +140,10 @@ class Troca extends CActiveRecord
 		return $this->isSolicitante() ? $this->usuarioQueDecide->getAvaliacao() : $this->usuarioSolicitante->getAvaliacao();
 	}
 
+	public function arquivar()
+	{
+		$this->status = self::StatusArquivada;
+		$this->update(['status']);
+	}
+
 }
