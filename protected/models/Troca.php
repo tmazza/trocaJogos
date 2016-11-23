@@ -23,8 +23,9 @@
 class Troca extends CActiveRecord
 {
 
-	const StatusAtiva = 1;
 	const StatusArquivada = 0;
+	const StatusAtiva = 1;
+	const StatusParaAvaliar = 2;
 
 
 	/**
@@ -144,6 +145,27 @@ class Troca extends CActiveRecord
 	{
 		$this->status = self::StatusArquivada;
 		$this->update(['status']);
+	}
+
+	public function aceitarProposta()
+	{
+		# retira itens das listas de disponíveis dos usuários envolvidos na troca
+		$solicitados = $this->itensSolicitados;
+		foreach ($solicitados as $i) {
+			ItemParaTroca::model()->deleteByPk($i->itemParaTroca_id);
+		}
+		$oferecidos = $this->itensOferecidos;
+		foreach ($oferecidos as $i) {
+			ItemParaTroca::model()->deleteByPk($i->itemParaTroca_id);
+		}
+
+		# atualizar contadores de trocas realizadas
+		$this->usuarioQueDecide->incrementaTrocas();
+		$this->usuarioSolicitante->incrementaTrocas();
+		
+		# atualizar status da troca
+		$this->status = self::StatusParaAvaliar;
+		$this->update(['status']);	
 	}
 
 }

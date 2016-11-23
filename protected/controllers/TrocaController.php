@@ -7,6 +7,13 @@ class TrocaController extends MainController {
 
   public function actionAvaliar($id){
     $troca = Troca::model()->findByPk((int) $id);
+
+    if($troca->status = Troca::StatusParaAvaliar){
+      $this->redirect($this->createUrl('/troca/qualificar',[
+        'id' => $troca->id,
+      ]));
+    }
+
     $user = $troca->isSolicitante() ? $troca->usuarioQueDecide : $troca->usuarioSolicitante;
 
     if(isset($_POST['msg'])){
@@ -24,6 +31,14 @@ class TrocaController extends MainController {
     $this->render('avaliar',[
       'troca' => $troca,
       'user' => $user,
+    ]);
+  }
+
+  public function actionQualificar($id)
+  {
+    $troca = Troca::model()->findByPk((int) $id);
+    $this->render('qualificar',[
+      'troca' => $troca,
     ]);
   }
 
@@ -98,6 +113,14 @@ class TrocaController extends MainController {
     $troca->arquivar();
     Util::fsuc('Proposta de troca recusada.');
     $this->redirect($this->createUrl('/site/index'));
+  }
+
+  public function actionAceitar($id)
+  {
+    $troca = Troca::model()->findByPk((int) $id);
+    $troca->aceitarProposta();
+    Util::fsuc('Troca realizada! Avalie como foi troca.');
+    $this->redirect($this->createUrl('/troca/avaliar',['id'=>$troca->id]));
   }
 
   private function getItensTenho($user)

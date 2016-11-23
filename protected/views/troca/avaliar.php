@@ -88,7 +88,9 @@
 	<a class="waves-effect waves-light btn right grey" onclick="return confirm('Confirmar recusa?')" href='<?=$this->createUrl('/troca/recusar',['id'=>$troca->id]);?>'>
 		Recusar
 	</a> 
-	<a style='margin-right: 4px;' class="waves-effect waves-light btn blue darken-3 right">Marcar como realizada</a> 
+	<a style='margin-right: 4px;' class="waves-effect waves-light btn blue darken-3 right"onclick="return confirm('Confirma?')" href='<?=$this->createUrl('/troca/aceitar',['id'=>$troca->id]);?>'>
+		Marcar como realizada
+	</a> 
 <?php endif; ?>
 <div class="flow-text">Resumo da troca</div>
 <div class="card-panel">
@@ -116,7 +118,7 @@
 				<?php endif; ?>
 			</div>		
 			<div style="text-align:center">
-				<a href='<?=$this->createUrl('/perfil/index')?>'>
+				<a href='<?=$this->createUrl('/perfil/index',['id'=>$user->id])?>'>
 					<img src="<?=$user->getPic();?>" style='width:90px;' alt="" class="circle responsive-img"/>
 				</a>
 				<br>

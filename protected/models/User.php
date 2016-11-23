@@ -151,10 +151,16 @@ class User extends CActiveRecord
 	public function getAvaliacao()
 	{
 		if($this->qtdTrocaRealizadas > 0){
-			return ceil($this->avaliacaoMedia / $this->qtdTrocaRealizadas);
+			return ceil($this->somaAvaliacoes / $this->qtdTrocaRealizadas);
 		} else {
 			return 0;
 		}
+	}
+
+	public function incrementaTrocas()
+	{
+		$this->qtdTrocaRealizadas += 1;
+		$this->update(['qtdTrocaRealizadas']);
 	}
 
 }
