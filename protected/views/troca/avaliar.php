@@ -85,7 +85,9 @@
 		Cancelar proposta
 	</a> 
 <?php else: ?>
-	<a class="waves-effect waves-light btn right grey">Recusar</a> 
+	<a class="waves-effect waves-light btn right grey" onclick="return confirm('Confirmar recusa?')" href='<?=$this->createUrl('/troca/recusar',['id'=>$troca->id]);?>'>
+		Recusar
+	</a> 
 	<a style='margin-right: 4px;' class="waves-effect waves-light btn blue darken-3 right">Marcar como realizada</a> 
 <?php endif; ?>
 <div class="flow-text">Resumo da troca</div>
