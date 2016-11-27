@@ -19,6 +19,17 @@
 	    <link rel="shortcut icon" href="<?=Yii::app()->baseUrl;?>/favicon.ico?v1"/>
 
 	    <!-- estilos -->
+
+	    <?php if(!YII_DEBUG): ?>
+	    	<script type="text/javascript">
+			    window.smartlook||(function(d) {
+			    var o=smartlook=function(){ o.api.push(arguments)},h=d.getElementsByTagName('head')[0];
+			    var c=d.createElement('script');o.api=new Array();c.async=true;c.type='text/javascript';
+			    c.charset='utf-8';c.src='//rec.smartlook.com/recorder.js';h.appendChild(c);
+			    })(document);
+			    smartlook('init', '3e97ea11c40fe85d6e4a3e8537d1a277156bcfe2');
+			</script>
+	    <?php endif; ?>
 	</head>
 
 	<body style="padding-bottom: 80px;">
