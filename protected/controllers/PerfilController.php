@@ -9,6 +9,7 @@ class PerfilController extends MainController {
     $this->render('index',[
       'trocas' => Troca::model()->findAll([
         'condition' => "(usuarioSolicitante_id = {$id} OR usuarioQueDecide_id = {$id})",
+        'order' => 'id DESC',
       ]),
       'user' => User::model()->findByPk((int)$id),
     ]);

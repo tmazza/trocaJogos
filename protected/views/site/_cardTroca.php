@@ -8,7 +8,7 @@
   	]);?>'>
 	    <div class="card-panel waves-effect" style="width:100%">
 	    	<div class="flow-text" style="float:left; width:350px;color:#000;">
-				<small style="color:#777">Você reberá:</small><br> <?=$itensVem?>
+				<small style="color:#777">Você receberá:</small><br> <?=$itensVem?>
 	    		<br>
 				<small style="color:#777">Você oferece:</small><br> <?=$itensVai?>
 	    	</div>
