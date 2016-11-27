@@ -17,7 +17,6 @@ class CadastroForm extends CFormModel {
             array('nome, email, senha, senhaConfirma', 'required'),
             array('email', 'email', 'message' => '{attribute} válido.'),
             array('email', 'validaEmailChoice'),
-            array('senha', 'length', 'min' => 6, 'max' => 16, 'tooShort' => 'No mínimo {min} caracteres.', 'tooLong' => 'No máximo {max} caracteres.'),
             array('senhaConfirma', 'compare', 'compareAttribute' => 'senha', 'message' => 'Senhas devem ser iguais.'),
         );
     }
