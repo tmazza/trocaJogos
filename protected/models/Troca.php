@@ -179,4 +179,26 @@ class Troca extends CActiveRecord
 		return !(is_null($this->avaliacaoSolicitante) || is_null($this->avaliacaoQueDecide));
 	}
 
+	public function getMelhores()
+	{
+		$id = Yii::app()->user->id;
+		$sql = <<<SQL
+select ip.usuario_id from item_desejado id
+join item_paraTroca ip on id.item_id = ip.item_id and ip.usuario_id != {$id}
+where id.usuario_id = {$id} AND ip.usuario_id IN
+(
+	select id.usuario_id from item_paraTroca ip
+	join item_desejado id on id.item_id = ip.item_id and id.usuario_id != {$id}
+	where ip.usuario_id = {$id}
+)
+SQL;
+		$ids = Yii::app()->db->createCommand($sql)->queryAll();
+		if(count($ids) > 0){
+			$ids = @array_column($ids, 'usuario_id');
+			return User::model()->findAll("id IN (".implode(',',$ids).")");
+		} else {
+			return [];
+		}
+	}
+
 }

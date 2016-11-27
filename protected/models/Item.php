@@ -77,7 +77,7 @@ class Item extends CActiveRecord
 	public function getJogos()
 	{
 		return $this->findAll([
-			'condition' => 'tipo = 1',
+			'condition' => 'tipo = 1 and visivel = 1',
 			'order' => 'nome ASC',
 		]);
 	}
@@ -85,7 +85,7 @@ class Item extends CActiveRecord
 	public function getConsoles()
 	{
 		return $this->findAll([
-			'condition' => 'tipo = 0',
+			'condition' => 'tipo = 0 and visivel = 1',
 			'order' => 'nome ASC',
 		]);
 	}

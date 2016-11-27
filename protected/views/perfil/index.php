@@ -47,43 +47,47 @@
     </div>
     <div id="test1" class="col s12">
       <br>
-      <?php foreach ($trocas as $t): ?>
-      <?php
-        if($t->usuarioSolicitante_id == $user->id){
-          $comentario = $t->msgAvaliacaoQueDecide;
-          $rating = $t->avaliacaoQueDecide;
-          $u = $t->usuarioQueDecide;
-        } else {
-          $comentario = $t->msgAvaliacaoSolicitante;
-          $rating = $t->avaliacaoSolicitante;
-          $u = $t->usuarioSolicitante;
-        }
-      ?>
-      <div class="col s12 m6">
-        <div class="card-panel grey lighten-5 z-depth-1">
-          <div class="row valign-wrapper">
-            <div class="col s2">
-              <img src="<?=$u->getPic()?>" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+      <?php if(count($trocas) > 0): ?>
+        <?php foreach ($trocas as $t): ?>
+        <?php
+          if($t->usuarioSolicitante_id == $user->id){
+            $comentario = $t->msgAvaliacaoQueDecide;
+            $rating = $t->avaliacaoQueDecide;
+            $u = $t->usuarioQueDecide;
+          } else {
+            $comentario = $t->msgAvaliacaoSolicitante;
+            $rating = $t->avaliacaoSolicitante;
+            $u = $t->usuarioSolicitante;
+          }
+        ?>
+        <div class="col s12 m6">
+          <div class="card-panel grey lighten-5 z-depth-1">
+            <div class="row valign-wrapper">
+              <div class="col s2">
+                <img src="<?=$u->getPic()?>" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+              </div>
+              <div class="col s10">
+                <span class="black-text">
+                 <?=$comentario;?> 
+                </span>
+              </div>
             </div>
-            <div class="col s10">
-              <span class="black-text">
-               <?=$comentario;?> 
-              </span>
-            </div>
+              <div class="right">
+                <?php for($i=0;$i<5;$i++): ?>
+                  <?php if($i+1 > $rating): ?>
+                    <i class="material-icons grey-text">star</i>
+                  <?php else: ?>
+                    <i class="material-icons amber-text">star</i>
+                  <?php endif; ?>
+                <?php endfor; ?>  
+              </div>
+              <br>
           </div>
-            <div class="right">
-              <?php for($i=0;$i<5;$i++): ?>
-                <?php if($i+1 > $rating): ?>
-                  <i class="material-icons grey-text">star</i>
-                <?php else: ?>
-                  <i class="material-icons amber-text">star</i>
-                <?php endif; ?>
-              <?php endfor; ?>  
-            </div>
-            <br>
         </div>
-      </div>
-      <?php endforeach; ?>         
+        <?php endforeach; ?>         
+      <?php else: ?>         
+        <p class="flow-text">Nenhum troca finalizada.</p>
+      <?php endif; ?> 
     </div>
     <div id="test2" class="col s12">
       <br>
@@ -118,7 +122,7 @@
             <div class="card-panel grey lighten-5 z-depth-1">
               <div class="row valign-wrapper">
                 <div class="col s2">
-                  <img src="<?= $ipt->item->urlFoto?>" alt="" class="responsive-img">
+                  <img src="<?= $id->item->urlFoto?>" alt="" class="responsive-img">
                 </div>
                 <div class="col s10 flow-text">
                   <span class="black-text">
