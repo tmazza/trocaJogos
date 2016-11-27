@@ -17,7 +17,11 @@
     <p class="flow-text">Nenhuma proposta de troca para avaliação.</p>
     <ul>
       <li>
-        Comece cadastrando os <?=CHtml::link('itens que você deseja',$this->createUrl('/cadastro/desejo'))?> e os <?=CHtml::link('itens que você possui para troca',$this->createUrl('/cadastro/paraTroca'))?>. 
+        Comece cadastrando os <?=CHtml::link('itens que você deseja',$this->createUrl('/cadastro/add',[
+          'lista' => CadastroController::ListaDesejos,
+        ]))?> e os <?=CHtml::link('itens que você possui para troca',$this->createUrl('/cadastro/add',[
+          'lista' => CadastroController::ListaParaTroca,
+        ]))?>. 
       </li>
       <li>
         Depois <b>clique no ícone</b> <i class="button-collapse2 material-icons" data-activates="slide-out2">search</i> para <b>encontra pessoas</b> que tenham o que você deseja.

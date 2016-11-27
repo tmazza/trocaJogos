@@ -50,7 +50,10 @@ class CadastroController extends MainController {
           $this->redirect($this->createUrl('/assinatura/index'));
         }
 
-        $model->save();
+        if(!$model->save()){
+          echo 'asda';
+          exit;
+        }
         Util::fsuc('Item incluído.');
         $this->redirect($this->createUrl('/cadastro/'.$url));
       }
