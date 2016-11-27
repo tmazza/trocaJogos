@@ -55,4 +55,35 @@ class SiteController extends MainController {
       $this->redirect(Yii::app()->homeUrl);
   }
 
+  public function actionInsert($nome)
+  {
+    $email = strtolower($nome).rand(0,100).'@email.com';
+    $user = User::addUser($nome,$email,'345');
+    echo $email;
+    echo '<hr>';
+    $itens = Item::model()->findAll("visivel = 1");
+
+    foreach ($itens as $i) {
+      $id = new ItemDesejado();
+      $id->item_id = $i->id;
+      $id->usuario_id = $user->id;
+      $id->isNovo = 1;
+      if(!$id->save()){
+        echo '<pre>';
+        print_r($id->getErrors());
+        exit;
+      }
+      $id = new ItemParaTroca();
+      $id->item_id = $i->id;
+      $id->usuario_id = $user->id;
+      $id->isNovo = 1;
+      if(!$id->save()){
+        echo '<pre>';
+        print_r($id->getErrors());
+        exit;
+      }
+    }
+
+  }
+
 }

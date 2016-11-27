@@ -1,4 +1,4 @@
-<h5>Trocas em avaliação</h5>
+<h5>Trocas para avaliação</h5>
 <?php if(count($trocas) > 0): ?>
   <?php foreach ($trocas as $t): ?>
     <?php if($t->euNaoAvaliei()): ?>
