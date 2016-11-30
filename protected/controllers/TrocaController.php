@@ -85,11 +85,11 @@ class TrocaController extends MainController {
       
       $valorOferece = $valorRecebe = 0;
       foreach ($oferece as $id) {
-        $ipt = ItemParaTroca::model()->findByPk((int)$id);
+        $ipt = ItemUsuario::model()->findByPk((int)$id);
         $valorOferece+=$ipt->getPontos();
       }
       foreach ($recebe as $id) {
-        $ipt = ItemParaTroca::model()->findByPk((int)$id);
+        $ipt = ItemUsuario::model()->findByPk((int)$id);
         $valorRecebe+=$ipt->getPontos();
       }
 

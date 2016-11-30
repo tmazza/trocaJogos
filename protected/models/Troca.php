@@ -152,11 +152,11 @@ class Troca extends CActiveRecord
 		# retira itens das listas de disponíveis dos usuários envolvidos na troca
 		$solicitados = $this->itensSolicitados;
 		foreach ($solicitados as $i) {
-			ItemParaTroca::model()->deleteByPk($i->itemParaTroca_id);
+			ItemUsuario::model()->deleteByPk($i->itemParaTroca_id);
 		}
 		$oferecidos = $this->itensOferecidos;
 		foreach ($oferecidos as $i) {
-			ItemParaTroca::model()->deleteByPk($i->itemParaTroca_id);
+			ItemUsuario::model()->deleteByPk($i->itemParaTroca_id);
 		}
 
 		# atualizar contadores de trocas realizadas
@@ -182,14 +182,18 @@ class Troca extends CActiveRecord
 	public function getMelhores()
 	{
 		$id = Yii::app()->user->id;
+		$tParaTroca = ItemUsuario::TipoParaTroca;
+		$tDesejado = ItemUsuario::TipoParaTroca;
 		$sql = <<<SQL
-select ip.usuario_id from item_desejado id
-join item_paraTroca ip on id.item_id = ip.item_id and ip.usuario_id != {$id}
-where id.usuario_id = {$id} AND ip.usuario_id IN
+select ip.usuario_id from item_usuario id
+join item_usuario ip on id.item_id = ip.item_id and ip.usuario_id != {$id} 
+	and ip.tipo = {$tParaTroca}
+where id.usuario_id = {$id} and id.tipo = {$tDesejado} AND ip.usuario_id IN
 (
-	select id.usuario_id from item_paraTroca ip
-	join item_desejado id on id.item_id = ip.item_id and id.usuario_id != {$id}
-	where ip.usuario_id = {$id}
+	select id.usuario_id from item_usuario ip
+	join item_usuario id on id.item_id = ip.item_id and id.usuario_id != {$id}
+		and id.tipo = {$tDesejado}
+	where ip.usuario_id = {$id} and ip.tipo = {$tParaTroca}
 )
 SQL;
 		$ids = Yii::app()->db->createCommand($sql)->queryAll();

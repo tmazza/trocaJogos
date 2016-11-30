@@ -43,8 +43,12 @@ class Item extends CActiveRecord
 	public function relations()
 	{
 		return array(
-			'itemDesejados' => array(self::HAS_MANY, 'ItemDesejado', 'item_id'),
-			'itemParaTrocas' => array(self::HAS_MANY, 'ItemParaTroca', 'item_id'),
+			'itemDesejados' => array(self::HAS_MANY, 'ItemUsuario', 'item_id',
+				'condition' => 'tipo = ' . ItemUsuario::TipoDesejado,
+			),
+			'itemParaTrocas' => array(self::HAS_MANY, 'ItemUsuario', 'item_id',
+				'condition' => 'tipo = ' . ItemUsuario::TipoParaTroca,
+			),
 		);
 	}
 

@@ -64,7 +64,8 @@ class SiteController extends MainController {
     $itens = Item::model()->findAll("visivel = 1");
 
     foreach ($itens as $i) {
-      $id = new ItemDesejado();
+      $id = new ItemUsuario();
+      $id->tipo = ItemUsuario::TipoDesejado;
       $id->item_id = $i->id;
       $id->usuario_id = $user->id;
       $id->isNovo = 1;
@@ -73,7 +74,8 @@ class SiteController extends MainController {
         print_r($id->getErrors());
         exit;
       }
-      $id = new ItemParaTroca();
+      $id = new ItemUsuario();
+      $id->tipo = ItemUsuario::TipoParaTroca;
       $id->item_id = $i->id;
       $id->usuario_id = $user->id;
       $id->isNovo = 1;

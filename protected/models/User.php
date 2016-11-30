@@ -46,11 +46,13 @@ class User extends CActiveRecord
 	public function relations()
 	{
 		return array(
-			'itensDesejados' => [self::HAS_MANY,'ItemDesejado','usuario_id',
+			'itensDesejados' => [self::HAS_MANY,'ItemUsuario','usuario_id',
 				'order' => 'id DESC',
+				'condition' => 'tipo = ' . ItemUsuario::TipoDesejado,
 			],
-			'itensParaTroca' => [self::HAS_MANY,'ItemParaTroca','usuario_id',
+			'itensParaTroca' => [self::HAS_MANY,'ItemUsuario','usuario_id',
 				'order' => 'id DESC',
+				'condition' => 'tipo = ' . ItemUsuario::TipoParaTroca,
 			],
 		);
 	}

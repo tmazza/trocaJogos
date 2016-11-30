@@ -1,5 +1,5 @@
 <h5>Incluir item 
-<?php if($lista == CadastroController::ListaDesejos): ?>
+<?php if($lista == ItemUsuario::TipoDesejado): ?>
   na lista de desejos
 <?php else: ?>
   para troca
@@ -20,7 +20,7 @@
     <br>
 
     <div class="input-field col s12 campoform" id='lista-console'><br>
-      <select id='tipo' name='<?=$nomeModel?>[item_id]'>
+      <select id='tipo' name='ItemUsuario[item_id]'>
         <option value="" disabled selected>Selecione...</option>
         <?php foreach ($consoles as $c): ?>
           <option value="<?=$c->id?>"><?=$c->nome?></option>
@@ -31,7 +31,7 @@
     </div>
 
     <div class="input-field col s12 campoform" id='lista-jogo'><br>
-      <select id='tipo' name='<?=$nomeModel?>[item_id]'>
+      <select id='tipo' name='ItemUsuario[item_id]'>
         <option value="" disabled selected>Selecione...</option>
         <?php foreach ($jogos as $j): ?>
           <option value="<?=$j->id?>"><?=$j->nome?></option>
@@ -42,7 +42,7 @@
 
     <div class="input-field col s12 campoform" id='nome-jogo'><br>
       <label>Qual o nome do jogo?</label>
-      <input  name='<?=$nomeModel?>[nome]' />
+      <input  name='ItemUsuario[nome]' />
       <br>
     </div>
 
@@ -50,7 +50,7 @@
       <label>&nbsp;&nbsp;&nbsp;Em que estado está?</label><br><br>
       <label>
         Usado
-        <input type="checkbox"  name='<?=$nomeModel?>[isNovo]'>
+        <input type="checkbox"  name='ItemUsuario[isNovo]'>
         <span class="lever"></span>
         Novo
       </label>

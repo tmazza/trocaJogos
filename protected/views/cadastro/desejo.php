@@ -1,5 +1,5 @@
 <a class="btn blue darken-3 hide-on-small-only right" href='<?=$this->createUrl('/cadastro/add',[
-	'lista' => CadastroController::ListaDesejos,
+	'lista' => ItemUsuario::TipoDesejado,
 ])?>'>
   Incluir novo item
 </a>
@@ -37,7 +37,7 @@
 
 <div class="fixed-action-btn hide-on-med-and-up" style="bottom: 45px; right: 24px;">
   <a class="btn-floating btn-large blue darken-3" href='<?=$this->createUrl('/cadastro/add',[
-	'lista' => CadastroController::ListaDesejos,
+	'lista' => ItemUsuario::TipoDesejado,
 ])?>'>
     <i class="material-icons">add</i>
   </a>

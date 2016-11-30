@@ -1,9 +1,6 @@
 <?php
 class CadastroController extends MainController {
 
-  const ListaDesejos = 1;
-  const ListaParaTroca = 2;
-
   protected function beforeAction($action){
     return parent::beforeAction($action);
   }
@@ -24,13 +21,13 @@ class CadastroController extends MainController {
 
   public function actionAdd($lista)
   {
-    $nomeModel = $lista == self::ListaDesejos ? 'ItemDesejado' : 'ItemParaTroca';
-    $url = $lista == self::ListaDesejos ? 'desejo' : 'paraTroca';
-    $model = new $nomeModel;
+    $url = $lista == ItemUsuario::TipoDesejado ? 'desejo' : 'paraTroca';
+    $model = new ItemUsuario;
 
-    if(isset($_POST[$nomeModel])){
+    if(isset($_POST['ItemUsuario'])){
       $tipo = $_POST['tipo'];
-      $model->attributes = $_POST[$nomeModel];
+      $model->attributes = $_POST['ItemUsuario'];
+      $model->tipo = $lista;
       $model->usuario_id = Yii::app()->user->id;
       $model->isNovo = (int) ($model->isNovo == 'on');
       if($model->validate()){
@@ -43,10 +40,10 @@ class CadastroController extends MainController {
         }
 
         # fluxo alternativo 2
-        if($lista == self::ListaParaTroca 
-          && count($this->user->itensParaTroca) >= ItemParaTroca::LimiteGratuito)
+        if($lista == ItemUsuario::TipoParaTroca 
+          && count($this->user->itensParaTroca) >= ItemUsuario::LimiteGratuito)
         {
-          Util::ferr('Você atingiu o limite de ' . ItemParaTroca::LimiteGratuito . ' itens para sua conta gratuita. Assine para não ter limites.');
+          Util::ferr('Você atingiu o limite de ' . ItemUsuario::LimiteGratuito . ' itens para sua conta gratuita. Assine para não ter limites.');
           $this->redirect($this->createUrl('/assinatura/index'));
         }
 
@@ -60,7 +57,6 @@ class CadastroController extends MainController {
     }
 
     $this->render('add',[
-      'nomeModel' => $nomeModel,
       'model' => $model,
       'lista' => $lista,
       'jogos' => Item::model()->getJogos(),

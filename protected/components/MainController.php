@@ -35,6 +35,9 @@ class MainController extends CController  {
 
     public function actionError() {
         $erro = Yii::app()->errorHandler->error;
+        echo '<pre>';
+        print_r($erro);
+        exit;
         $this->render('/site/erro',array(
           'erro' => $erro,
         ));
