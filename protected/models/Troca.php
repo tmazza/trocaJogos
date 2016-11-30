@@ -58,8 +58,12 @@ class Troca extends CActiveRecord
 			'mensagems' => array(self::HAS_MANY, 'Mensagem', 'troca_id','order'=>'id DESC'),
 			'usuarioQueDecide' => array(self::BELONGS_TO, 'User', 'usuarioQueDecide_id'),
 			'usuarioSolicitante' => array(self::BELONGS_TO, 'User', 'usuarioSolicitante_id'),
-			'itensSolicitados' => [self::HAS_MANY,'TrocaItemSolicitado','troca_id'],
-			'itensOferecidos' => [self::HAS_MANY,'TrocaItemOferecido','troca_id'],
+			'itensSolicitados' => [self::HAS_MANY,'ItemTroca','troca_id',
+				'condition' => 'tipo = ' . ItemTroca::Solicitado,
+			],
+			'itensOferecidos' => [self::HAS_MANY,'ItemTroca','troca_id',
+				'condition' => 'tipo = ' . ItemTroca::Oferecido,
+			],
 		);
 	}
 

@@ -102,14 +102,16 @@ class TrocaController extends MainController {
       $model->save();
 
       foreach ($oferece as $id) {
-        $relacao = new TrocaItemOferecido();
+        $relacao = new ItemTroca();
+        $relacao->tipo = ItemTroca::Oferecido;
         $relacao->troca_id = $model->id;
         $relacao->itemParaTroca_id = $id;
         $relacao->save();
       }
 
       foreach ($recebe as $id) {
-        $relacao = new TrocaItemSolicitado();
+        $relacao = new ItemTroca();
+        $relacao->tipo = ItemTroca::Solicitado;
         $relacao->troca_id = $model->id;
         $relacao->itemParaTroca_id = $id;
         $relacao->save();

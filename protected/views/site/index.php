@@ -18,9 +18,9 @@
     <ul>
       <li>
         Comece cadastrando os <?=CHtml::link('itens que você deseja',$this->createUrl('/cadastro/add',[
-          'lista' => CadastroController::ListaDesejos,
+          'lista' => ItemUsuario::TipoDesejado,
         ]))?> e os <?=CHtml::link('itens que você possui para troca',$this->createUrl('/cadastro/add',[
-          'lista' => CadastroController::ListaParaTroca,
+          'lista' => ItemUsuario::TipoParaTroca,
         ]))?>. 
       </li>
       <li>
